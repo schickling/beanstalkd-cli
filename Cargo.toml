@@ -7,3 +7,5 @@ authors = ["Johannes Schickling <schickling.j@gmail.com>"]
 [dependencies]
 
 beanstalkd = "*"
+docopt = "*"
+rustc-serialize = "*"
