@@ -3,3 +3,7 @@
 name = "beanstalkd-cli"
 version = "0.0.1"
 authors = ["Johannes Schickling <schickling.j@gmail.com>"]
+
+[dependencies]
+
+beanstalkd = "*"
