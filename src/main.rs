@@ -38,7 +38,7 @@ fn main() {
 
     if args.cmd_put {
         let message = args.arg_message.as_slice();
-        beanstalkd.put(message, 0, 0, 10000);
+        let _ = beanstalkd.put(message, 0, 0, 10000);
     } else if args.cmd_stats {
         let stats = beanstalkd.stats().unwrap();
         if args.arg_key.is_some() {
