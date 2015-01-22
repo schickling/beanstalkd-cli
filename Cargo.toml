@@ -3,6 +3,12 @@
 name = "beanstalkd-cli"
 version = "0.0.1"
 authors = ["Johannes Schickling <schickling.j@gmail.com>"]
+license = "MIT"
+homepage = "https://github.com/schickling/beanstalkd-cli"
+repository = "https://github.com/schickling/beanstalkd-cli"
+description = "Command line Beanstalkd tool"
+keywords = ["beanstalkd", "cli", "queue", "worker", "ironmq"]
+readme = "README.md"
 
 [dependencies]
 
