@@ -1,5 +1,9 @@
 # beanstalkd-cli [![Build Status](https://travis-ci.org/schickling/beanstalkd-cli.svg?branch=master)](https://travis-ci.org/schickling/beanstalkd-cli)
-Command line Beanstalkd tool 
+Command line Beanstalkd tool
+
+## Download
+
+You can download a prebuilt binary [here](https://github.com/schickling/beanstalkd-cli/releases).
 
 ## Usage
 ```
