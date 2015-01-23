@@ -1,0 +1,9 @@
+language: rust
+deploy:
+  provider: releases
+  api_key:
+    secure: UUpUCbyydKLMljAMPaE7UiTtkVhupb0W7PZZuuRD7b+KqFsma7ETnjwkIy3utltRy2a1dWH40CUDS8IXWs3h9PbCdOOzBcdOIIzMrex+3JYUuhdnt/lgOF/IhK2a5LU7dtmioBEA8vpRgYK5uiwqP2kmVwXFIw1f6K9524f61q0=
+  file: target/beanstalkd-cli
+  on:
+    tags: true
+    all_branches: true
