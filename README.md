@@ -22,4 +22,4 @@ Options:
 
 ## Development
 
-This CLI tool in written in Rust and based on the [rust-beanstalkd librar](https://github.com/schickling/rust-beanstalkd).
+This CLI tool in written in Rust and based on the [rust-beanstalkd library](https://github.com/schickling/rust-beanstalkd).
