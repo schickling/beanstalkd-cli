@@ -1,4 +1,4 @@
-# beanstalkd-cli
+# beanstalkd-cli [![Build Status](https://travis-ci.org/schickling/beanstalkd-cli.svg?branch=master)](https://travis-ci.org/schickling/beanstalkd-cli)
 Command line Beanstalkd tool 
 
 ## Usage
