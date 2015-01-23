@@ -7,12 +7,15 @@ extern crate beanstalkd;
 use docopt::Docopt;
 use beanstalkd::Beanstalkd;
 
+mod commands;
+
 static VERSION: &'static str = "0.0.0";
 static USAGE: &'static str = "
 Command line Beanstalkd tool
 
 Usage:
     beanstalkd-cli put <message>
+    beanstalkd-cli top
     beanstalkd-cli stats [<key>]
     beanstalkd-cli [options]
 
@@ -24,9 +27,10 @@ Options:
 #[derive(RustcDecodable, Show)]
 struct Args {
     cmd_put: bool,
+    arg_message: String,
+    cmd_top: bool,
     cmd_stats: bool,
     arg_key: Option<String>,
-    arg_message: String,
 }
 
 fn main() {
@@ -37,16 +41,14 @@ fn main() {
     let mut beanstalkd = Beanstalkd::localhost().unwrap();
 
     if args.cmd_put {
-        let message = args.arg_message.as_slice();
-        let _ = beanstalkd.put(message, 0, 0, 10000);
+        commands::put::put(&mut beanstalkd, args.arg_message);
+    } else if args.cmd_top {
+        commands::top::top(&mut beanstalkd);
     } else if args.cmd_stats {
-        let stats = beanstalkd.stats().unwrap();
         if args.arg_key.is_some() {
-            println!("{}", stats.get(&args.arg_key.unwrap()).unwrap());
+            commands::stats::get(&mut beanstalkd, args.arg_key.unwrap());
         } else {
-            for (key, value) in stats.iter() {
-                println!("{}: {}", key, value);
-            }
+            commands::stats::all(&mut beanstalkd);
         }
     } else {
         println!("{}", USAGE.trim());
