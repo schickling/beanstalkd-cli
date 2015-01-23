@@ -7,6 +7,7 @@ Command line Beanstalkd tool
 
 Usage:
     beanstalkd-cli put <message>
+    beanstalkd-cli top
     beanstalkd-cli stats [<key>]
     beanstalkd-cli [options]
 
