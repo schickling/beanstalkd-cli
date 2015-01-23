@@ -19,3 +19,7 @@ Options:
     -h, --help       Display this message
     -v, --version    Print version info and exit
 ```
+
+## Development
+
+This CLI tool in written in Rust and based on the [rust-beanstalkd librar](https://github.com/schickling/rust-beanstalkd).
