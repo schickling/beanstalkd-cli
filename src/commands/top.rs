@@ -6,17 +6,21 @@ use beanstalkd::Beanstalkd;
 
 pub fn top(beanstalkd: &mut Beanstalkd) {
     let one_sec = Duration::seconds(1);
+    let interesting_keys = vec!("current-jobs-ready",
+                                "current-workers",
+                                "current-producers",
+                                "current-connections");
     let mut length = 0;
     loop {
-        let mut backspace = String::new();
-        for _ in range(0, length) {
-            backspace = backspace + "\x08";
-        }
         let stats = beanstalkd.stats().unwrap();
-        let val = stats.get(&"total-jobs".to_string()).unwrap();
-        print!("{}{}", backspace, val);
+        let mut string = range(0, length).fold(String::new(), |s, _| s + "\x08");
+        for key in interesting_keys.iter() {
+            string = format!("{}{}: {}, ", string, key, stats.get(&key.to_string()).unwrap());;
+        }
+        length = string.len() - 2;
+        string.truncate(length);
+        print!("{}", string);
         flush();
-        length = val.len();
         sleep(one_sec);
     }
 }
