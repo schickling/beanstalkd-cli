@@ -11,9 +11,16 @@ Beanstalkd CLI
 
 Usage:
     beanstalkd-cli [options] put <message>
+    beanstalkd-cli [options] pop
     beanstalkd-cli [options] top
     beanstalkd-cli [options] stats [<key>]
     beanstalkd-cli [(--help | --version)]
+
+Commands:
+    put <messsage>     Writes a message to the queue
+    pop                Removes and prints the next message in the queue
+    top                Live monitoring of the queue
+    stats [<key>]      Prints all stats or stats for a specific key
 
 Options:
     -h, --host=<host>  Hostname of the beanstalkd server [default: localhost]
