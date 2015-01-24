@@ -14,18 +14,22 @@ static USAGE: &'static str = "
 Command line Beanstalkd tool
 
 Usage:
-    beanstalkd-cli put <message>
-    beanstalkd-cli top
-    beanstalkd-cli stats [<key>]
-    beanstalkd-cli [options]
+    beanstalkd-cli [options] put <message>
+    beanstalkd-cli [options] top
+    beanstalkd-cli [options] stats [<key>]
+    beanstalkd-cli [(--help | --version)]
 
 Options:
-    -h, --help       Display this message
-    -v, --version    Print version info and exit
+    -h, --host=<host>  Hostname of the beanstalkd server [default: localhost]
+    -p, --port=<port>  Port of the beanstalkd server [default: 11300]
+    --help             Display this message
+    -v, --version      Print version info and exit
 ";
 
-#[derive(RustcDecodable, Show)]
+#[derive(RustcDecodable, Debug)]
 struct Args {
+    flag_host: String,
+    flag_port: u16,
     cmd_put: bool,
     arg_message: String,
     cmd_top: bool,
@@ -38,7 +42,14 @@ fn main() {
                             .and_then(|d| d.version(Some(VERSION.to_string())).decode())
                             .unwrap_or_else(|e| e.exit());
 
-    let mut beanstalkd = Beanstalkd::localhost().unwrap();
+    if ! (args.cmd_put || args.cmd_top || args.cmd_stats) {
+        println!("{}", USAGE.trim());
+        return;
+    }
+
+    let host = args.flag_host.as_slice();
+    let port = args.flag_port;
+    let mut beanstalkd = Beanstalkd::connect(host, port).ok().expect("Server not running");
 
     if args.cmd_put {
         commands::put::put(&mut beanstalkd, args.arg_message);
@@ -50,7 +61,5 @@ fn main() {
         } else {
             commands::stats::all(&mut beanstalkd);
         }
-    } else {
-        println!("{}", USAGE.trim());
     }
 }

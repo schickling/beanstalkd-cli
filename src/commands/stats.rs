@@ -2,8 +2,10 @@ use beanstalkd::Beanstalkd;
 
 pub fn all(beanstalkd: &mut Beanstalkd) {
     let stats = beanstalkd.stats().unwrap();
-    for (key, value) in stats.iter() {
-        println!(" {}: {}", key, value);
+    let mut pairs: Vec<String> = stats.iter().map(|(k, v)| format!("{}: {}", k, v)).collect();
+    pairs.sort();
+    for pair in pairs.iter() {
+        println!("{}", pair);
     }
 }
 
