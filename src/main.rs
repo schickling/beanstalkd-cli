@@ -11,7 +11,7 @@ mod commands;
 
 static VERSION: &'static str = "0.0.0";
 static USAGE: &'static str = "
-Command line Beanstalkd tool
+Beanstalkd CLI
 
 Usage:
     beanstalkd-cli [options] put <message>

@@ -1,5 +1,5 @@
 # beanstalkd-cli [![Build Status](https://travis-ci.org/schickling/beanstalkd-cli.svg?branch=master)](https://travis-ci.org/schickling/beanstalkd-cli)
-Command line Beanstalkd tool
+Simple to use commandline tool for [Beanstalkd](https://github.com/kr/beanstalkd)
 
 ## Download
 
@@ -7,17 +7,19 @@ You can download a prebuilt binary [here](https://github.com/schickling/beanstal
 
 ## Usage
 ```
-Command line Beanstalkd tool
+Beanstalkd CLI
 
 Usage:
-    beanstalkd-cli put <message>
-    beanstalkd-cli top
-    beanstalkd-cli stats [<key>]
-    beanstalkd-cli [options]
+    beanstalkd-cli [options] put <message>
+    beanstalkd-cli [options] top
+    beanstalkd-cli [options] stats [<key>]
+    beanstalkd-cli [(--help | --version)]
 
 Options:
-    -h, --help       Display this message
-    -v, --version    Print version info and exit
+    -h, --host=<host>  Hostname of the beanstalkd server [default: localhost]
+    -p, --port=<port>  Port of the beanstalkd server [default: 11300]
+    --help             Display this message
+    -v, --version      Print version info and exit
 ```
 
 ## Development
