@@ -16,14 +16,14 @@ Beanstalkd CLI
 Usage:
     beanstalkd-cli [options] put <message>
     beanstalkd-cli [options] pop
-    beanstalkd-cli [options] top
+    beanstalkd-cli [options] monitor
     beanstalkd-cli [options] stats [<key>]
     beanstalkd-cli [(--help | --version)]
 
 Commands:
     put <messsage>     Writes a message to the queue
     pop                Removes and prints the next message in the queue
-    top                Live monitoring of the queue
+    monitor            Live monitoring of the queue
     stats [<key>]      Prints all stats or stats for a specific key
 
 Options:
@@ -40,7 +40,7 @@ struct Args {
     cmd_put: bool,
     arg_message: String,
     cmd_pop: bool,
-    cmd_top: bool,
+    cmd_monitor: bool,
     cmd_stats: bool,
     arg_key: Option<String>,
 }
@@ -50,7 +50,7 @@ fn main() {
                             .and_then(|d| d.version(Some(VERSION.to_string())).decode())
                             .unwrap_or_else(|e| e.exit());
 
-    if ! (args.cmd_put || args.cmd_pop || args.cmd_top || args.cmd_stats) {
+    if ! (args.cmd_put || args.cmd_pop || args.cmd_monitor || args.cmd_stats) {
         println!("{}", USAGE.trim());
         return;
     }
@@ -63,8 +63,8 @@ fn main() {
         commands::put::put(&mut beanstalkd, args.arg_message);
     } else if args.cmd_pop {
         commands::pop::pop(&mut beanstalkd);
-    } else if args.cmd_top {
-        commands::top::top(&mut beanstalkd);
+    } else if args.cmd_monitor {
+        commands::monitor::monitor(&mut beanstalkd);
     } else if args.cmd_stats {
         if args.arg_key.is_some() {
             commands::stats::get(&mut beanstalkd, args.arg_key.unwrap());

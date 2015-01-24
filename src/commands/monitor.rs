@@ -4,7 +4,7 @@ use std::time::duration::Duration;
 
 use beanstalkd::Beanstalkd;
 
-pub fn top(beanstalkd: &mut Beanstalkd) {
+pub fn monitor(beanstalkd: &mut Beanstalkd) {
     let one_sec = Duration::seconds(1);
     let interesting_keys = vec!("current-jobs-ready",
                                 "current-workers",
