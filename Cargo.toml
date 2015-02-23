@@ -1,7 +1,11 @@
 [package]
 
 name = "beanstalkd-cli"
+<<<<<<< HEAD
 version = "0.2.4"
+=======
+version = "0.3.0"
+>>>>>>> new
 authors = ["Johannes Schickling <schickling.j@gmail.com>"]
 license = "MIT"
 homepage = "https://github.com/schickling/beanstalkd-cli"

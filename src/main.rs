@@ -1,4 +1,6 @@
-#![allow(unstable)]
+#![feature(core)]
+#![feature(std_misc)]
+#![feature(old_io)]
 
 extern crate "rustc-serialize" as rustc_serialize;
 extern crate docopt;
