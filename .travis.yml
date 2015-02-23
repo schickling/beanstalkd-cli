@@ -14,5 +14,6 @@ deploy:
     - beanstalkd-cli-osx.tar.gz
   on:
     tags: true
+    all_branches: true
 notifications:
-  email: falseall_branches: true
+  email: false
