@@ -1,4 +1,6 @@
-#![allow(unstable)]
+#![feature(core)]
+#![feature(std_misc)]
+#![feature(old_io)]
 
 extern crate "rustc-serialize" as rustc_serialize;
 extern crate docopt;
@@ -24,7 +26,7 @@ Options:
     -v, --version    Print version info and exit
 ";
 
-#[derive(RustcDecodable, Show)]
+#[derive(RustcDecodable, Debug)]
 struct Args {
     cmd_put: bool,
     arg_message: String,
