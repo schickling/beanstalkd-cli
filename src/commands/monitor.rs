@@ -1,5 +1,5 @@
-use std::io::stdio::flush;
-use std::io::timer::sleep;
+use std::old_io::stdio::flush;
+use std::old_io::timer::sleep;
 use std::time::duration::Duration;
 
 use beanstalkd::Beanstalkd;

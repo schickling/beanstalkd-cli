@@ -1,42 +1,24 @@
 [root]
 name = "beanstalkd-cli"
-version = "0.2.4"
+version = "0.3.0"
 dependencies = [
-<<<<<<< HEAD
- "beanstalkd 0.2.4 (registry+https://github.com/rust-lang/crates.io-index)",
- "docopt 0.6.31 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
-=======
  "beanstalkd 0.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "docopt 0.6.39 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.2.15 (registry+https://github.com/rust-lang/crates.io-index)",
->>>>>>> new
 ]
 
 [[package]]
 name = "beanstalkd"
-<<<<<<< HEAD
-version = "0.2.4"
-=======
 version = "0.3.1"
->>>>>>> new
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "docopt"
-<<<<<<< HEAD
-version = "0.6.31"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-dependencies = [
- "regex 0.1.10 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustc-serialize 0.2.9 (registry+https://github.com/rust-lang/crates.io-index)",
-=======
 version = "0.6.39"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "regex 0.1.15 (registry+https://github.com/rust-lang/crates.io-index)",
  "rustc-serialize 0.2.15 (registry+https://github.com/rust-lang/crates.io-index)",
->>>>>>> new
 ]
 
 [[package]]
@@ -46,10 +28,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
 name = "rustc-serialize"
-<<<<<<< HEAD
-version = "0.2.9"
-=======
 version = "0.2.15"
->>>>>>> new
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
