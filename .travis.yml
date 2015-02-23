@@ -4,13 +4,13 @@ os:
 language: rust
 after_success:
   - cargo build
-  - tar -zcvf beanstalkd-cli-$TRAVIS_OS_NAME.tar.gz target/beanstalkd-cli
+  - cd target && tar -zcvf beanstalkd-cli-$TRAVIS_OS_NAME.tar.gz beanstalkd-cli && ls
 deploy:
   provider: releases
   api_key:
     secure: UUpUCbyydKLMljAMPaE7UiTtkVhupb0W7PZZuuRD7b+KqFsma7ETnjwkIy3utltRy2a1dWH40CUDS8IXWs3h9PbCdOOzBcdOIIzMrex+3JYUuhdnt/lgOF/IhK2a5LU7dtmioBEA8vpRgYK5uiwqP2kmVwXFIw1f6K9524f61q0=
   file:
-    - beanstalkd-cli-$TRAVIS_OS_NAME.tar.gz
+    - target/beanstalkd-cli-$TRAVIS_OS_NAME.tar.gz
   on:
     tags: true
     all_branches: true
