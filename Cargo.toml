@@ -3,7 +3,7 @@
 name = "beanstalkd-cli"
 version = "0.3.0"
 authors = ["Johannes Schickling <schickling.j@gmail.com>"]
-license = "MIT"
+license = "MIT OR Apache-2.0"
 homepage = "https://github.com/schickling/beanstalkd-cli"
 repository = "https://github.com/schickling/beanstalkd-cli"
 description = "Command line Beanstalkd tool"
