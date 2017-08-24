@@ -23,7 +23,7 @@ Usage:
     beanstalkd-cli [(--help | --version)]
 
 Commands:
-    put <messsage>     Writes a message to the queue
+    put <message>      Writes a message to the queue
     pop                Removes and prints the next message in the queue
     monitor            Live monitoring of the queue
     stats [<key>]      Prints all stats or stats for a specific key
