@@ -1,17 +1,14 @@
-#![feature(core)]
-#![feature(std_misc)]
-#![feature(old_io)]
-
-extern crate "rustc-serialize" as rustc_serialize;
 extern crate docopt;
 extern crate beanstalkd;
+#[macro_use]
+extern crate serde_derive;
 
 use docopt::Docopt;
 use beanstalkd::Beanstalkd;
 
 mod commands;
 
-static VERSION: &'static str = "0.0.0";
+static VERSION: &'static str = "0.4.0";
 static USAGE: &'static str = "
 Beanstalkd CLI
 
@@ -35,7 +32,7 @@ Options:
     -v, --version      Print version info and exit
 ";
 
-#[derive(RustcDecodable, Debug)]
+#[derive(Deserialize, Debug)]
 struct Args {
     flag_host: String,
     flag_port: u16,
@@ -49,7 +46,7 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-                            .and_then(|d| d.version(Some(VERSION.to_string())).decode())
+                            .and_then(|d| d.version(Some(VERSION.to_string())).deserialize())
                             .unwrap_or_else(|e| e.exit());
 
     if ! (args.cmd_put || args.cmd_pop || args.cmd_monitor || args.cmd_stats) {
@@ -57,9 +54,7 @@ fn main() {
         return;
     }
 
-    let host = args.flag_host.as_slice();
-    let port = args.flag_port;
-    let mut beanstalkd = Beanstalkd::connect(host, port).ok().expect("Server not running");
+    let mut beanstalkd = Beanstalkd::connect(&args.flag_host, args.flag_port).ok().expect("Server not running");
 
     if args.cmd_put {
         commands::put::put(&mut beanstalkd, args.arg_message);
