@@ -1,5 +1,5 @@
-extern crate docopt;
 extern crate beanstalkd;
+extern crate docopt;
 #[macro_use]
 extern crate serde_derive;
 
@@ -46,15 +46,17 @@ struct Args {
 
 fn main() {
     let args: Args = Docopt::new(USAGE)
-                            .and_then(|d| d.version(Some(VERSION.to_string())).deserialize())
-                            .unwrap_or_else(|e| e.exit());
+        .and_then(|d| d.version(Some(VERSION.to_string())).deserialize())
+        .unwrap_or_else(|e| e.exit());
 
-    if ! (args.cmd_put || args.cmd_pop || args.cmd_monitor || args.cmd_stats) {
+    if !(args.cmd_put || args.cmd_pop || args.cmd_monitor || args.cmd_stats) {
         println!("{}", USAGE.trim());
         return;
     }
 
-    let mut beanstalkd = Beanstalkd::connect(&args.flag_host, args.flag_port).ok().expect("Server not running");
+    let mut beanstalkd = Beanstalkd::connect(&args.flag_host, args.flag_port)
+        .ok()
+        .expect("Server not running");
 
     if args.cmd_put {
         commands::put::put(&mut beanstalkd, args.arg_message);
