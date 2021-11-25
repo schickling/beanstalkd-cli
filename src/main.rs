@@ -28,6 +28,7 @@ Commands:
 Options:
     -h, --host=<host>  Hostname of the beanstalkd server [default: localhost]
     -p, --port=<port>  Port of the beanstalkd server [default: 11300]
+    -t, --tube=<tube>  Tube to put/pop from - pop can use multiple tubes comma separated
     --help             Display this message
     -v, --version      Print version info and exit
 ";
@@ -36,6 +37,7 @@ Options:
 struct Args {
     flag_host: String,
     flag_port: u16,
+    flag_tube: String,
     cmd_put: bool,
     arg_message: String,
     cmd_pop: bool,
@@ -58,10 +60,16 @@ fn main() {
         .ok()
         .expect("Server not running");
 
+    let mut tubes: Vec<&str> = vec!["default"];
+
+    if !args.flag_tube.is_empty() {
+        tubes = args.flag_tube.split(",").collect();
+    }
+
     if args.cmd_put {
-        commands::put::put(&mut beanstalkd, args.arg_message);
+        commands::put::put(&mut beanstalkd, args.arg_message, tubes[0]);
     } else if args.cmd_pop {
-        commands::pop::pop(&mut beanstalkd);
+        commands::pop::pop(&mut beanstalkd, tubes);
     } else if args.cmd_monitor {
         commands::monitor::monitor(&mut beanstalkd);
     } else if args.cmd_stats {
