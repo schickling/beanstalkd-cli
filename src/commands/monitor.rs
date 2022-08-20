@@ -23,7 +23,7 @@ pub fn monitor(beanstalkd: &mut Beanstalkd) {
                 string,
                 key,
                 stats.get(&key.to_string()).unwrap()
-            );;
+            );
         }
         length = string.len() - 2;
         string.truncate(length);
